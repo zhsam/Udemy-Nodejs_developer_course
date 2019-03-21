@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-fs.writeFileSync('notes.txt', 'My name is Sam.')
+// fs.writeFileSync('notes.txt', 'My name is Sam.')
 
 //
 // Challenge: Append a message to notes.txt
@@ -13,3 +13,5 @@ fs.writeFileSync('notes.txt', 'My name is Sam.')
 // https://nodejs.org/docs/latest-v11.x/api/fs.html#fs_fs_appendfilesync_path_data_options
 fs.appendFileSync('notes.txt', '\nNice to meet you!')
 fs.appendFileSync('notes.txt', '\nNice course to take!')
+
+// 
