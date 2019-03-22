@@ -6,6 +6,6 @@
 // 3. Export getNotes function
 // 4. From app.js, load in and call the function printing message to console
 
-const getNotes = require('./3-2-2-notes.js')
+const getNotes = require('./3-10_notes.js')
 const msg = getNotes()
 console.log(msg)
