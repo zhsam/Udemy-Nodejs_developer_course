@@ -3,20 +3,36 @@ const yargs = require('yargs')
 
 const getNotes = require('./3-10_notes.js')
 
-// console.log('results from process.argv');
-// console.log(process.argv);
-// console.log('results from yargs.argv');
-// console.log(yargs.argv);
-
 // Customize yargs version
 yargs.version('1.1.0')
+
+//
+// Challenge: Add an option to yargs
+//
+// 1. setup a body option for the add command
+// 2. Configure a description, make it required, and for it to be a string
+// 3. Log the body value in the handler function
+// 4. Test your work!
 
 // create add command
 yargs.command({
     command: 'add',
     describe: 'Add a new note',
-    handler: function(){
-        console.log('Adding a new note!')
+    builder:{
+        title: {
+            describe: 'Note title',
+            demandOption: true, // compulsory
+            type: 'string' // at least an empty string as default
+        },
+        body:{
+            description: 'Note Body',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function(argv){
+        console.log('Title: '+ argv.title)
+        console.log('Body: '+ argv.body)
     }
 })
 
@@ -28,13 +44,6 @@ yargs.command({
         console.log('Removing the note!')
     }
 })
-
-//
-// Challenge: Add two new commands
-//
-// 1. Setup command to suppor "list" command (print placeholder messeage for now)
-// 2. Setup command to suppor "read" command (print placeholder messeage for now)
-// 3. Test your work by running both commands and ensure correct output.
 
 // create read command
 yargs.command({
@@ -57,5 +66,4 @@ yargs.command({
 })
 
 // add, remove, read, list
-console.log(yargs.argv)
-
+yargs.parse() // need this line if don't want to print argv twice
