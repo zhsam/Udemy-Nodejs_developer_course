@@ -14,7 +14,7 @@
 
 const chalk = require('chalk')
 
-console.log(chalk.green('Success!'))
+console.log(chalk.red('Error!'))
 console.log(chalk.bold("Nice Challenge!"));
 console.log(chalk.inverse("This is how inverse do!"));
 console.log(chalk.magenta.bold.inverse("Let's mixed it up!"));
