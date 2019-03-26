@@ -4,26 +4,35 @@ const app = express()
 
 // configure specific url
 app.get('', (req, res) => {
-    res.send("Hello Express!")
+    res.send("<h1>Weather</h1>")
 })
 
 app.get('/help', (req, res) => {
-    res.send("Help page")
+    res.send({
+        name: "Sam",
+        age: 24
+    },{
+        name: "Sarah"
+    })
 })
 
 //
-// Goal: Setup two new routes
+// Goal: Update routes
 //
-// 1. Setup an about route and render a page title
-// 2. Setup an weather route and render a page title
-// 3. Test your work by visiting both in the browser
+// 1. Setup about route to render a title with HTML
+// 2. Setup a weather route to send back JSON
+//      - Object with forecast and location string
+// 3. Test your work by visiting both in browser
 
 app.get('/about', (req, res) => {
-    res.send("about page")
+    res.send("<h3>This is some about me! </h3>")
 })
 
 app.get('/weather', (req, res) => {
-    res.send("weather page")
+    res.send({
+        location: 'taipei',
+        temperature: 21.5
+    })
 })
 
 // we owned: app.com
