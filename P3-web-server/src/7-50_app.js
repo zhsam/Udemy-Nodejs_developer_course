@@ -46,6 +46,21 @@ app.get('/weather', (req, res) => {
     })
 })
 
+app.get('/weather', (req, res) => {
+    res.send({
+        location: 'taipei',
+        temperature: 21.5
+    })
+})
+
+app.get('/help/*',(req,res)=>{
+    res.render('404',{
+        title: '404',
+        name: 'Sam',
+        errorMessage: 'Help article not found!'
+    })
+})
+
 // * -- match everything else not been matched
 app.get('*', (req, res) => {
     res.render('404',{
