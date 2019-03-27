@@ -1,6 +1,10 @@
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
+const request = require('request')
+
+const geocode = require('./utils/geocode')
+const forecast = require('./utils/forecast')
 
 const app = express()
 
@@ -40,24 +44,37 @@ app.get('/help',(req,res)=>{
 })
 
 //
-// Goal: Update weather endpoint to accept address
+// Goal: Wire up /weather
 //
-// 1. No address? Send back an error message
-// 2. Address? Send back the static JSON
-//    - Add address property onto JSON which erturns the provided address
-// 4. Test /weather and /weather?address=philadelphia
+// 1. Require geocode/forecast into app.js
+// 2. Use the address to geocode
+// 3. Use the coordinates to get forecast
+// 4. Send back the real forecast and location
 
 app.get('/weather', (req, res) => {
     if(!req.query.address){
         return res.send({
             error: 'You must entered an address!'
         })
+    } else{
+        const userInput = req.query.address
+        geocode(userInput, (error, {latitude, longitude, location}) => {
+            if(error){
+                return res.send({error})
+            }
+            forecast(latitude, longitude, (error, forecastData) => {
+                if(error){
+                    return res.send({error})
+                }
+                res.send({
+                    location: location,
+                    forecast: forecastData,
+                    address: req.query.address
+                })
+            })
+                
+        })    
     }
-    res.send({
-        location: 'taipei',
-        temperature: 21.5,
-        address: req.query.address
-    })
 })
 
 app.get('/products',(req, res)=>{
@@ -82,8 +99,6 @@ app.get('*', (req, res) => {
         errorMessage: 'Page not found!'
     })
 })
-
-
 
 app.listen(3000, () => {
     console.log('Server is up on port 3000.')
