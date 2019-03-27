@@ -39,13 +39,12 @@ app.get('/help',(req,res)=>{
     })
 })
 
-
-//
-// Goal: Create a partial for the footer
-//
-// 1. Setup the template for the footer partial "Created by XXX"
-// 2. Render the partial at the bottom of all three pages
-// 3. Test your work by visiting all three pages
+app.get('/weather', (req, res) => {
+    res.send({
+        location: 'taipei',
+        temperature: 21.5
+    })
+})
 
 app.get('/weather', (req, res) => {
     res.send({
@@ -53,6 +52,33 @@ app.get('/weather', (req, res) => {
         temperature: 21.5
     })
 })
+
+app.get('/help/*',(req,res)=>{
+    res.render('404',{
+        title: '404',
+        name: 'Sam',
+        errorMessage: 'Help article not found!'
+    })
+})
+
+// * -- match everything else not been matched
+app.get('*', (req, res) => {
+    res.render('404',{
+        title: '404',
+        name: 'Sam',
+        errorMessage: 'Page not found!'
+    })
+})
+
+//
+// Goal: Create and render a 404 page with handlebars
+//
+// 1. Setup the template to render the header and footer
+// 2. Setup the template to render and error message in a paragraph
+// 3. Render the template for both 404 routes
+//    - Page not found.
+//    - Help article not found.
+// 4. Test your work. Visit /what and /help/units
 
 app.listen(3000, () => {
     console.log('Server is up on port 3000.')
