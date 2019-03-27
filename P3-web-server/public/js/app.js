@@ -28,6 +28,21 @@ console.log('Client side javascript file is loaded.')
 
 const weatherForm = document.querySelector('form')
 const search = document.querySelector('input')
+const messageOne = document.querySelector('#message-1')
+const messageTwo = document.querySelector('#message-2')
+
+// messageOne.textContent = 'From Javascript'
+
+//
+// Goal: Render content to pagaraphs
+//
+// 1. Select the second message p from JavaScript
+// 2. Just before fetch, render loading message and empty p
+// 3. If error, render error
+// 4. If no error, render location and forecast
+// 5. Test your work! Search for errors ans for valid locations
+
+
 
 // e --> event
 weatherForm.addEventListener('submit', (e)=>{
@@ -36,11 +51,17 @@ weatherForm.addEventListener('submit', (e)=>{
     
     const url = 'http://localhost:3000/weather?address=' + location
 
+    messageOne.textContent = 'Loading...'
+    messageTwo.textContent = ''
+
     fetch(url).then((response)=>{
         response.json().then((data)=>{
             if(data.error){
+                messageOne.textContent = data.error
                 console.log(data.error)
             } else{
+                messageOne.textContent = data.location
+                messageTwo.textContent = data.forecast
                 console.log(data.location)
                 console.log(data.forecast)
             }
