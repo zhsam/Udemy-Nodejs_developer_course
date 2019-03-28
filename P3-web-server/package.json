@@ -12,5 +12,9 @@
     "express": "^4.16.4",
     "hbs": "^4.0.1",
     "request": "^2.88.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhsam/Udemy-Nodejs_developer_course/tree/master/P3-web-server"
   }
 }
