@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/app.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js -e js,hbs"
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +17,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zhsam/Udemy-Nodejs_developer_course/tree/master/P3-web-server"
+  },
+  "devDependencies": {
+    "nodemon": "^1.2.0"
   }
 }
